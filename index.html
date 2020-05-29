@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+   
+    <title>ChatBot</title>
+    <style>
+        body {
+            color: #333;
+            background-color: #bfd1e6;
+            font: 13px helvetica,arial,freesans,clean,sans-serif;
+             background-repeat: no-repeat;background-image: image(etac);
+            }
+
+        #demo {
+            /*background-color: #ffffff;*/
+            width: 80%;
+            height: px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+
+            background-color: rgb(74, 144, 209);
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px #999;
+            line-height: 1.4em;
+            font: 13px helvetica,arial,freesans,clean,sans-serif;
+            color: black;
+        }
+        #demo input {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid rgb(26, 1, 1);
+            width: 275px;
+        }
+        .button {
+            text-decoration: none;
+    padding: 10px;
+    font-weight: 400;
+    width:250px;
+        height:30px;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: #65b3da;
+    border-radius: 10px;
+    border: 3px solid #bec2e0;
+    font-weight: bold;
+    right: 30;
+        }
+        
+        #chatBotCommandDescription {
+            display: none;
+            margin-bottom: 20px;
+        }
+        input:focus {
+            outline: none;
+        }
+        .chatBotChatEntry {
+            display: none;
+        }
+        .contenedor1{
+           
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        width: 1000px;
+        text-align: left;
+       
+        
+
+        }
+.fondo22{
+text-align: right;
+
+}
+.centrado{
+    text-align: center;
+    font-size: 50px;
+    
+    font-weight: bolder;
+    color: white;
+}
+    .imagen{
+        display: flex;
+        align-items: flex-start;
+        justify-content: ;
+}
+
+ h1{
+    font-size: 15px;
+     color:rgb(108, 194, 37);
+     justify-content: center;
+     font-weight: 900;
+    
+ }
+ h2{
+    font-size: 20px;
+     color:rgb(228, 238, 241);
+      font-weight: 900;
+    
+ }
+ .contenedor{
+    justify-content:right:
+ }
+    </style>
+</head>
+<body>
+   <div class="imagen">
+    <img src="https://www.etac.edu.mx/blog-etac/wp-content/uploads/2016/07/etac2-3.jpg"alt="" width="80" height="50" hspace="20">
+    <H1>INTELIGENCIA ARTIFICAL  </H1>
+    <img src="https://www.tendencias21.net/photo/art/grande/34396527-31432462.jpg?v=1559556387" alt="" width="80" height="50" hspace="20"></br>
+
+</div>
+    <div class="contenedor1">
+       
+   
+            <div class="contenedor">
+              
+          
+              <h2>CHATBOT</h2>
+              </div>
+        </div>
+    </br>
+       
+       
+
+<script src="chatbot.js"></script>
+<link rel="stylesheet" type="text/css" href="chatbot.css" />
+
+<div id="demo">
+    <div id="chatBotCommandDescription"></div>
+    <input id="humanInput" type="text" placeholder="Di Algo" />
+
+    <div class="button" onclick="if (!ChatBot.playConversation(sampleConversation,4000)) {alert('conversation already running');};">
+        Reproducir conversación de muestra!</div> </br>
+    <div class="button" onclick="$('#chatBotCommandDescription').slideToggle();" style="margin-right:10px">Que puedo decir?</div>
+    </br>
+    <div style="clear: both;">&nbsp;</div>
+
+    <div id="chatBot">
+        <div id="chatBotThinkingIndicator"></div>
+        <div id="chatBotHistory"></div>
+    </div>
+</div>
+<div class="fondo22">
+    <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--VT9R8c3f--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/wuqpaaqyem22uwfqdd5s.png" alt="" width="300" > 
+
+   
+</div>
+
+
+<script>
+    var sampleConversation = [
+        "Hola",
+        "Mi nombre es Etacbot",
+        "Donde esta China?",
+        "Cual es la poblacion de China?",
+        "Adios"
+    ];
+    var config = {
+        botName: 'Duck Duck Go Bot',
+        inputs: '#humanInput',
+        inputCapabilityListing: true,
+        engines: [ChatBot.Engines.duckduckgo()],
+        normalizer: [function( text ) {
+            return text.replace('!' , '');
+        } , 'trim' ],
+        addChatEntryCallback: function(entryDiv, text, origin) {
+            entryDiv.delay(200).slideDown();
+        }
+    };
+    ChatBot.init(config);
+    ChatBot.setBotName("Etacbot");
+    ChatBot.addPattern("^Hola$", "response", "Hola, Amigo", undefined, "Di 'Hola' Para que te salude de nuevo.");
+    ChatBot.addPattern("^Adios$", "response", "Hasta luego amigo", undefined, " 'Adios' Para terminar la conversación");
+    ChatBot.addPattern("^Como me llamo$", "response", "No se amigo no me haz dicho tu nombre", undefined, " 'como me llamo' Para terminar la conversación");
+    ChatBot.addPattern("^cual es la poblacion de china$", "response", "200 personas", undefined, " 'Adios' cual es la poblacion de china ");
+    ChatBot.addPattern("^cuidate$", "response", "cuidate  amigo", undefined, " 'cuidate' Para terminar la conversación");
+    ChatBot.addPattern("^cual es la mejor carrera$", "response", "INFORMATICA :D", undefined, " cual es la mejor carrera");
+    ChatBot.addPattern("^puedes contarme un chiste$", "response", "Tia, para que te pintas - para verme bonita   -tarda mucho en hacer efecto ? jajajaja", undefined, " 'puedes contarme un chiste' Para terminar la conversación");
+    ChatBot.addPattern("^como estas$", "response", "bien amigo en que puedo ayudarte", undefined, " 'como estas' Para terminar la conversación");
+    ChatBot.addPattern("^puedes ayudarme$", "response", "Porsupuesto Que es lo que necesitas", undefined, " 'puedes ayudarme' Para terminar la conversación");
+    ChatBot.addPattern("(?:Me llamo|I'm|I am) (.*)", "response", "hola $1, gracias por hablar conmigo hoy", function (matches) {
+        ChatBot.setHumanName(matches[1]);
+    },"Di 'Mi nombre es [Tu Nombre]' o 'yo soy [Nombre]'ser llamado así por el Etacbot");
+    ChatBot.addPattern("(cuál es el )?significado de la vida", "response", "42", undefined, "ScripBot '¿Cuál es el significado de la vida para obtener la respuesta?.");
+    ChatBot.addPattern("(cuál es el )?significado de la vida", "response", "Mexico", undefined, "ScripBot '¿cual es el pais mas bonito?.");
+    ChatBot.addPattern("compute ([0-9]+) plus ([0-9]+)", "response", undefined, function (matches) {
+        ChatBot.addChatEntry("That would be "+(1*matches[1]+1*matches[2])+".","bot");
+    },"Di 'calcular [numero] mas [numero]' para hacer que el bot sea tu mono matemático");
+
+</script>
+</div>
+</body>
+</html>
